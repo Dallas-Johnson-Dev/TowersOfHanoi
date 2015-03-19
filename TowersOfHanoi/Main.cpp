@@ -7,11 +7,9 @@
 #include <cstdlib>
 #include <string>
 #include "Tower.h"
+#include "Main.h"
 
 using namespace std;
-
-//method prototypes: our header fucked everything up somehow;
-bool moveDisk(Tower *&Tower1, Tower *&Tower2);
 
 //End prototyping
 
@@ -37,14 +35,28 @@ int main(int argc, char* argv[])
 	//Print out our tower to see if they're adding properly.
 	LeftPeg->print();
 	MiddlePeg->print();
-	RightPeg->print();
+	RightPeg->print(); 
 
 	//Try a disk move with one of our towers and see if they work.
 	bool canMoveDisk;
-	canMoveDisk = moveDisk(LeftPeg, RightPeg);
+	/*canMoveDisk = moveDisk(LeftPeg, RightPeg);
 	canMoveDisk = moveDisk(LeftPeg, RightPeg);
 	canMoveDisk = moveDisk(LeftPeg, MiddlePeg);
-	canMoveDisk = moveDisk(RightPeg, MiddlePeg);
+	canMoveDisk = moveDisk(RightPeg, MiddlePeg);*/
+
+	//Do hanoi
+	//We'll simulate the hanoi method here to see why this isnt' working.
+
+	if (diskCount % 2 == 1) {
+		//odd case here
+		canMoveDisk = moveDisk(LeftPeg, RightPeg);
+		canMoveDisk = moveDisk(LeftPeg, MiddlePeg);
+		canMoveDisk = moveDisk(MiddlePeg, RightPeg);
+	}
+	else {
+
+	}
+
 	//destruction of the towers
 	delete LeftPeg;
 	delete MiddlePeg;
@@ -64,4 +76,27 @@ bool moveDisk(Tower *&Tower1, Tower *&Tower2) {
 	}
 	cout << "Success!" << endl;
 	return true;
+}
+
+//The algorithm for doing the towers of hanoi is as follows
+//Odd: 1-3, 1-2, 2-3, repeat.
+//Even: 1-3, 2-3, 1-2, repeat (I think)
+//We may need to also make something bi-directional, which I may figure out as I do this.
+//Also the parameters are a horrible way to do this but it's more for checking sooo....
+
+void hanoi(int count, Tower *&Tower1, Tower *&Tower2, Tower *&Tower3) {
+	//First we check if the disk count on the first tower is even or odd, we'll get this with the diskcount parameter up top.
+	bool canMoveDisk;
+	if (count % 2 == 1) {
+		while (!Tower1->isEmpty() && !Tower2->isEmpty()) {
+			//Since this is automatic, we'll let the game do this and assume it won't make any mistakes.
+			canMoveDisk = moveDisk(Tower1, Tower3);
+			canMoveDisk = moveDisk(Tower1, Tower2);
+			canMoveDisk = moveDisk(Tower2, Tower3);
+		}
+	}
+	else {
+		//handle the even case here
+		cout << "Hold up, we're not here yet." << endl;
+	}
 }

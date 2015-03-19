@@ -1,3 +1,5 @@
+#ifndef __DISK__
+#define __DISK__
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -74,7 +76,7 @@ void disk::pushDisk(disk* disk) {//Since this must all be done with loops, we'll
 		tempNext = tempNext->getNext();
 	}
 	tempNext->setNext(disk);
-	tempNext = NULL;//since we really don't care at this point about the temp next in this node, we can just de-initialize it.
+	//tempNext = NULL;//since we really don't care at this point about the temp next in this node, we can just de-initialize it.
 }
 
 disk* disk::popDisk() {
@@ -128,3 +130,4 @@ disk* disk::FindTopDisk() {
 	tempNext = NULL;
 	return returnNext;
 }
+#endif

@@ -1,3 +1,5 @@
+#ifndef __TOWER__
+#define __TOWER__
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -83,3 +85,5 @@ string Tower::getName() {
 void Tower::setName(string newName) {
 	name = newName;
 }
+
+#endif //__TOWER__
