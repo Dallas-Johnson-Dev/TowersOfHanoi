@@ -14,9 +14,7 @@ using namespace std;
 
 class Tower;
 
-int main(int argc, char* argv[]);
-bool moveDisk(Tower *&Tower1, Tower *&Tower2);
-void hanoi(int count, Tower *&Tower1, Tower *&Tower2, Tower *&Tower3);
+int main(int argc, char* argv[]); //Where everything happens, all calculations and algorithms are run here. The main file has only one method and it's for moving the disks back and forth.
+void moveDisk(Tower *&Tower1, Tower *&Tower2, int first, int second); // A bi-directional moving method where you can move one disk from one tower and vice versa by checking the size of one disk's value against another.
 
 #endif //__HANOI__
-
